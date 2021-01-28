@@ -34,7 +34,9 @@ jobs:
 
       - run:
           name: "Generate App key"
-          command: php artisan key:generate
+          command: |
+            php artisan cache:clear
+            php artisan key:generate
 
       # run tests with phpunit
       - run:
