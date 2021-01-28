@@ -1,8 +1,23 @@
-version: 2
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@0.0.10.
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git
+        requires:
+          - build
+        filters:
+          branches:
+            only:
+              - main
+
 jobs:
   build:
     docker:
-      # Specify the version you desire here
       - image: circleci/php:7.4-node-browsers
 
     steps:
