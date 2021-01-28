@@ -14,6 +14,10 @@ jobs:
             sudo apt update
             sudo docker-php-ext-install zip
 
+      - run:
+          name: "Create Environment file"
+          command: |
+            mv .env.testing .env
 
       # Download and cache dependencies
       - restore_cache:
@@ -34,15 +38,9 @@ jobs:
 
       - run:
           name: "Generate App key"
-          command: |
-            php artisan cache:clear
-            php artisan key:generate
+          command: php artisan key:generate
 
       # run tests with phpunit
       - run:
           name: "Run Unit Tests"
           command: ./vendor/bin/phpunit tests/Unit
-
-      - run:
-          name: "Run Feature Tests"
-          command: ./vendor/bin/phpunit tests/Feature
