@@ -12,7 +12,6 @@ jobs:
           name: "Prepare Environment"
           command: |
             sudo apt update
-            sudo apt-get install php
             sudo docker-php-ext-install zip
 
 
