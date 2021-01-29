@@ -1,19 +1,7 @@
 version: 2.1
 
 orbs:
-  heroku: circleci/heroku@0.0.10.
-
-workflows:
-  heroku_deploy:
-    jobs:
-      - build
-      - heroku/deploy-via-git
-        requires:
-          - build
-        filters:
-          branches:
-            only:
-              - main
+  heroku: circleci/heroku@1.2.4
 
 jobs:
   build:
@@ -55,7 +43,7 @@ jobs:
           name: "Generate App key"
           command: php artisan key:generate
 
-      # run tests with phpunit
       - run:
           name: "Run Unit Tests"
           command: ./vendor/bin/phpunit tests/Unit
+  heroku/deploy-via-git:
