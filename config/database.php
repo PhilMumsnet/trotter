@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 $DATABASE_URL = parse_url('postgres://pbfygbaaiftxnh:a5e326469b2615707aa446201a5ff562ca08f9959e4331239e011e719cdabc44@ec2-3-232-92-90.compute-1.amazonaws.com:5432/d8cpe7d13lc6nr');
 
 return [
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     'connections' => [
         'sqlite' => [
