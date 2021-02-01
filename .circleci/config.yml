@@ -33,6 +33,7 @@ jobs:
           command: |
             sudo apt update
             sudo docker-php-ext-install zip
+            sudo apt-get install sqlite3 libsqlite3-dev
 
       - run:
           name: "Create Environment file"
