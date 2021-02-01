@@ -39,7 +39,6 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'asecretpassword',
         ]);
 
-        $response->assertStatus(302);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('home'));
     }
@@ -50,7 +49,6 @@ class UserRegistrationTest extends TestCase
         $response = $this->post(route('register'), [
         ]);
 
-        $response->assertStatus(302);
         $response->assertSessionHasErrors(['name', 'email', 'password']);
         $response->assertRedirect('/');
     }
@@ -67,7 +65,6 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'asecretpassword',
         ]);
 
-        $response->assertStatus(302);
         $response->assertSessionHasErrors(['email']);
         $response->assertRedirect('/');
     }
