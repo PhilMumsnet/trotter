@@ -54,4 +54,21 @@ class UserRegistrationTest extends TestCase
         $response->assertSessionHasErrors(['name', 'email', 'password']);
         $response->assertRedirect('/');
     }
+
+    /** @test */
+    public function the_user_cannot_register_with_a_duplicate_email()
+    {
+        $user = User::factory()->create(['email' => 'here@there.com']);
+
+        $response = $this->post(route('register'), [
+            'name' => 'Mr Wibble',
+            'email' => 'here@there.com',
+            'password' => 'asecretpassword',
+            'password_confirmation' => 'asecretpassword',
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['email']);
+        $response->assertRedirect('/');
+    }
 }
