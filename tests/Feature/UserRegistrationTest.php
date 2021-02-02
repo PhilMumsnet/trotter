@@ -61,8 +61,8 @@ class UserRegistrationTest extends TestCase
         $response = $this->post(route('register'), [
             'name' => 'Mr Wibble',
             'email' => 'here@there.com',
-            'password' => 'asecretpassword',
-            'password_confirmation' => 'asecretpassword',
+            'password' => '2Asecretpassword',
+            'password_confirmation' => '2Asecretpassword',
         ]);
 
         $response->assertSessionHasErrors(['email']);
