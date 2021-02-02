@@ -23,11 +23,19 @@ class RegisterController extends Controller
 
     protected function validator(array $data): ValidatorContract
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $messages = [
+            'password.regex' => 'The password must be at least 8 characters and contain at least 1 uppercase and lowercase letter, 1 number and 1 symbol',
+        ];
+
+        return Validator::make(
+            $data,
+            [
+                'name' => ['required', 'string', 'max:50', 'regex:/^[a-zA-Z0-9_ ]+$/i'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'],
+            ],
+            $messages
+        );
     }
 
     protected function create(array $data): User
