@@ -11,7 +11,7 @@ Remove friend
 View profile
 
 https://dev.to/safventure/deploy-laravel-application-with-database-to-heroku-l50
-
+https://medium.com/@brice_hartmann/testing-laravel-password-resets-858c58c16b79
 
 Test edit
 
