@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <title>Laravel</title>
 
@@ -21,6 +22,9 @@
         </style>
     </head>
     <body class="antialiased">
+    <div class="text-blue-700">
+            test
+    </div>
        Wibble
     </body>
 </html>
