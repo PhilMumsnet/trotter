@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth as AuthControllers;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('login', [AuthControllers\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthControllers\LoginController::class, 'login']);
