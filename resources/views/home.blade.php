@@ -1,5 +1,5 @@
 <x-layouts.app :title="$title ?? null" :description="$description ?? null">
     <div>
-        Dashboard
+        Home
     </div>
 </x-layouts.app>
