@@ -1,3 +1,5 @@
 <x-layouts.master :title="$title ?? null" :description="$description ?? null">
-    {{ $slot }}
+    <main class="bg-green-200">
+        {{ $slot }}
+    </main>
 </x-layouts.master>

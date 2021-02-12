@@ -1,5 +1,5 @@
-<x-layouts.app :title="$title ?? null" :description="$description ?? null">
+<x-layouts.three-columns :title="$title ?? null" :description="$description ?? null">
     <div>
         Home
     </div>
-</x-layouts.app>
+</x-layouts.three-columns>

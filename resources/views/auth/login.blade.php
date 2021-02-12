@@ -1,4 +1,4 @@
-<x-layouts.app :title="$title ?? null" :description="$description ?? null">
+<x-layouts.whole-page :title="$title ?? null" :description="$description ?? null">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -68,4 +68,4 @@
             </div>
         </div>
     </div>
-</x-layouts.app>
+</x-layouts.whole-page>
