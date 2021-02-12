@@ -1,5 +1,3 @@
 <x-layouts.three-columns :title="$title ?? null" :description="$description ?? null">
-    <div>
-        Home
-    </div>
+    Home
 </x-layouts.three-columns>
