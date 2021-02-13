@@ -1,3 +1,7 @@
 <x-layouts.three-columns :title="$title ?? null" :description="$description ?? null">
-    Home
+    <div>
+        @foreach ($trotts as $trott)
+            <p>{{ $trott->user->name}} - {{ $trott->body }}</p>
+        @endforeach
+    </div>
 </x-layouts.three-columns>

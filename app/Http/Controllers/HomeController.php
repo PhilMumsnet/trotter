@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trott;
+
 class HomeController extends Controller
 {
     /**
@@ -11,6 +13,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $trotts = Trott::query()
+            ->where('user_id', auth()->user()->id)
+            ->with('user')
+            ->get()
+        ;
+
+        return view('home', [
+            'trotts' => $trotts,
+        ]);
     }
 }
