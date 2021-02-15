@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trott;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $trotts = Trott::query()
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::id())
             ->with('user')
             ->get()
         ;
