@@ -13,7 +13,7 @@ class Timeline extends Component
 
     public function mount()
     {
-        $this->trotts = Auth::user()->timeline();
+        $this->updateTrotts();
     }
 
     public function updateTrotts()
