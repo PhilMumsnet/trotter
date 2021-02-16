@@ -14,7 +14,7 @@ class Timeline extends Component
 
     public function mount()
     {
-        $trotts = Trott::query()
+        $this->trotts = Trott::query()
             ->where('user_id', Auth::id())
             ->with('user')
             ->get()
