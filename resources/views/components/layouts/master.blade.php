@@ -20,8 +20,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <livewire:styles />
 </head>
 <body>
     {{ $slot }}
+    <livewire:scripts />
 </body>
 </html>
