@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Trott;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class NewTrottForm extends Component
 {
@@ -20,7 +19,7 @@ class NewTrottForm extends Component
 
         $trott->save();
 
-        return redirect()->to(route('home'));
+        $this->emit('trottCreated');
     }
 
     public function render()

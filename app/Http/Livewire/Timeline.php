@@ -10,9 +10,20 @@ class Timeline extends Component
 {
     public $trotts;
 
+    protected $listeners = ['trottCreated' => 'updateTrotts'];
+
     public function mount()
     {
         $trotts = Trott::query()
+            ->where('user_id', Auth::id())
+            ->with('user')
+            ->get()
+        ;
+    }
+
+    public function updateTrotts()
+    {
+        $this->trotts = Trott::query()
             ->where('user_id', Auth::id())
             ->with('user')
             ->get()
