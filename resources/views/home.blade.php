@@ -3,7 +3,7 @@
         <livewire:new-trott-form />
         
         @foreach ($trotts as $trott)
-            <x-trott-summary :trott="$trott" />
+            <livewire:trott-summary :trott="$trott" />
         @endforeach
     </div>
 </x-layouts.three-columns>
