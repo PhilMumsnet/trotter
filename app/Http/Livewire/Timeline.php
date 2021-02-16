@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Trott;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,20 +13,12 @@ class Timeline extends Component
 
     public function mount()
     {
-        $this->trotts = Trott::query()
-            ->where('user_id', Auth::id())
-            ->with('user')
-            ->get()
-        ;
+        $this->trotts = Auth::user()->timeline();
     }
 
     public function updateTrotts()
     {
-        $this->trotts = Trott::query()
-            ->where('user_id', Auth::id())
-            ->with('user')
-            ->get()
-        ;
+        $this->trotts = Auth::user()->timeline();
     }
 
     public function render()

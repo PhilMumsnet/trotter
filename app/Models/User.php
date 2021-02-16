@@ -26,4 +26,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Trott::class);
     }
+
+    public function timeline()
+    {
+        return Trott::query()
+            ->where('user_id', $this->id)
+            ->with('user')
+            ->latest()
+            ->get()
+        ;
+    }
 }
