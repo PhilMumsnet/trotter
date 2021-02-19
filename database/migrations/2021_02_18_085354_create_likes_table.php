@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrottsTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTrottsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trotts', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('body', 280);
+            $table->foreignId('trott_id')->constrained()->onDelete('cascade');
+            $table->boolean('liked');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTrottsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trotts');
+        Schema::dropIfExists('likes');
     }
 }
