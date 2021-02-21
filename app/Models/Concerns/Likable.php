@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Like;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
