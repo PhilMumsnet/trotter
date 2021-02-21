@@ -3,7 +3,7 @@
 
     <ul>
         <li>
-            <a class="font-bold text-5xl mb-4 block" href="{{ route('home') }}">Home</a>
+            <a class="font-bold text-5xl mt-4 block" href="{{ route('home') }}">Home</a>
         </li>
     </ul>
 </nav>
