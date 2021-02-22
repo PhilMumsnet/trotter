@@ -32,6 +32,7 @@ class User extends Authenticatable
         return Trott::query()
             ->where('user_id', $this->id)
             ->with('user')
+            ->withLikes()
             ->latest()
             ->get()
         ;
