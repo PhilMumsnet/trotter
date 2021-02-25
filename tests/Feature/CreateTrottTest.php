@@ -23,7 +23,6 @@ class CreateTrottTest extends TestCase
             ->call('submit')
         ;
 
-        $this->assertTrue(1 === Trott::count());
-        $this->assertTrue('This is a test trott' === Trott::first()->body);
+        $this->assertTrue(1 === Trott::where('body', 'This is a test trott')->count());
     }
 }
