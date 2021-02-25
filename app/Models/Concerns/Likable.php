@@ -28,17 +28,25 @@ trait Likable
         return $this->like($user, false);
     }
 
+    public function clearLikeStatus($user = null)
+    {
+        Like::query()
+            ->where('trott_id', $this->id)
+            ->where('user_id', $user ? $user->id : Auth::id())
+            ->delete()
+        ;
+    }
+
     public function isLikedBy(User $user, bool $liked = true)
     {
-        return (bool) $user::query()
-            ->likes()
-            ->where('tweet_id', $this->id)
+        return (bool) $user->likes()
+            ->where('trott_id', $this->id)
             ->where('liked', $liked)
             ->count()
         ;
     }
 
-    public function isDisikedBy(User $user)
+    public function isDislikedBy(User $user)
     {
         return $this->isLikedBy($user, false);
     }
