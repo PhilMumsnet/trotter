@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Likable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Trott extends Model
 {
-    use HasFactory;
+    use HasFactory, Likable;
 
     protected $fillable = [
         'body',

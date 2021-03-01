@@ -27,11 +27,17 @@ class User extends Authenticatable
         return $this->hasMany(Trott::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function timeline()
     {
         return Trott::query()
             ->where('user_id', $this->id)
             ->with('user')
+            ->withLikes()
             ->latest()
             ->get()
         ;

@@ -15,7 +15,7 @@ class CreateTrottsTable extends Migration
     {
         Schema::create('trotts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('body', 280);
             $table->timestamps();
         });
