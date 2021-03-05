@@ -48,7 +48,7 @@
 
                     <div class="mt-1">
                         <button class="w-full bg-red-300 p-2" type="submit">
-                            Submit
+                            Log In
                         </button>
 
                         @if (Route::has('password.request'))
