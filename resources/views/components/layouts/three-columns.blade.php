@@ -9,7 +9,7 @@
                 {{ $slot }}
             </main>
             <div class="bg-white w-1/5">
-                friends
+                <livewire:following-list />
             </div>
         </div>
     </div>
