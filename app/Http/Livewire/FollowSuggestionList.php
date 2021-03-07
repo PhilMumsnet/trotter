@@ -12,7 +12,10 @@ class FollowSuggestionList extends Component
 
     public function mount()
     {
-        $this->suggestions = User::where('id', '!=', Auth::id())->get();
+        $this->suggestions = User::where('id', '!=', Auth::id())
+            ->whereNotIn('id', Auth::user()->follows->pluck('id'))
+            ->get()
+        ;
     }
 
     public function render()
