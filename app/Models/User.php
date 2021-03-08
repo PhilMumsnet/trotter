@@ -52,4 +52,22 @@ class User extends Authenticatable
     {
         return $this->follows()->save($user);
     }
+
+    public function unfollow(self $user)
+    {
+        return $this->follows()->detach($user);
+    }
+
+    public function isFollowerOf(self $user)
+    {
+        return $this->follows->contains($user);
+    }
+
+    public function toggleFollowStatus(self $user)
+    {
+        $this->isFollowerOf($user)
+            ? $this->unfollow($user)
+            : $this->follow($user)
+        ;
+    }
 }
