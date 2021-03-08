@@ -36,7 +36,12 @@ class User extends Authenticatable
     public function timeline()
     {
         return Trott::query()
-            ->where('user_id', $this->id)
+            ->whereIn(
+                'user_id',
+                $this->follows
+                    ->pluck('id')
+                    ->push($this->id)
+            )
             ->with('user')
             ->withLikes()
             ->latest()
