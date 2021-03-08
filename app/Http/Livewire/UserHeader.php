@@ -9,12 +9,12 @@ class UserHeader extends Component
 {
     public $user;
 
-    protected $listeners = ['userFollowed' => '$refresh'];
+    protected $listeners = ['followsUpdated' => '$refresh'];
 
     public function follow()
     {
         Auth::user()->toggleFollowStatus($this->user);
-        $this->emit('userFollowed');
+        $this->emit('followsUpdated');
     }
 
     public function render()

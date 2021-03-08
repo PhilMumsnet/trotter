@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Followable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     protected $fillable = [
         'name', 'email', 'password', 'username',
@@ -46,28 +47,5 @@ class User extends Authenticatable
     public function follows()
     {
         return $this->belongsToMany(self::class, 'follows', 'user_id', 'following_user_id');
-    }
-
-    public function follow(self $user)
-    {
-        return $this->follows()->save($user);
-    }
-
-    public function unfollow(self $user)
-    {
-        return $this->follows()->detach($user);
-    }
-
-    public function isFollowerOf(self $user)
-    {
-        return $this->follows->contains($user);
-    }
-
-    public function toggleFollowStatus(self $user)
-    {
-        $this->isFollowerOf($user)
-            ? $this->unfollow($user)
-            : $this->follow($user)
-        ;
     }
 }

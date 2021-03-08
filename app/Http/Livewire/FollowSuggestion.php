@@ -13,7 +13,7 @@ class FollowSuggestion extends Component
     public function follow()
     {
         User::find(Auth::id())->follow($this->suggestion);
-        $this->emit('userFollowed');
+        $this->emit('followsUpdated');
     }
 
     public function render()

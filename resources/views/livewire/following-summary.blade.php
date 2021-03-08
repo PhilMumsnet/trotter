@@ -10,4 +10,5 @@
             </div>
         </div>
     </a>
+    <button class="bg-red-300 rounded-full py-2 px-4" wire:click="unfollow">Unfollow</button>
 </div>

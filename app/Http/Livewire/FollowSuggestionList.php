@@ -10,14 +10,11 @@ class FollowSuggestionList extends Component
 {
     public $suggestions;
 
-    protected $listeners = ['userFollowed' => 'updateSuggestions'];
+    protected $listeners = ['followsUpdated' => 'updateSuggestions'];
 
     public function mount()
     {
-        $this->suggestions = User::where('id', '!=', Auth::id())
-            ->whereNotIn('id', Auth::user()->follows->pluck('id'))
-            ->get()
-        ;
+        $this->updateSuggestions();
     }
 
     public function updateSuggestions()
