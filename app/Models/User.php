@@ -42,4 +42,14 @@ class User extends Authenticatable
             ->get()
         ;
     }
+
+    public function follows()
+    {
+        return $this->belongsToMany(self::class, 'follows', 'user_id', 'following_user_id');
+    }
+
+    public function follow(self $user)
+    {
+        return $this->follows()->save($user);
+    }
 }
