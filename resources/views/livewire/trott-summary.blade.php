@@ -6,7 +6,8 @@
         <div>
             <h2>
                 <span class="font-bold">{{ $trott->user->name }}</span>
-                <span class="text-gray-400"> - {{ $trott->updated_at->longAbsoluteDiffForHumans() }}</span>
+                <span class="text-gray-500"> &#64;{{ $trott->user->username }}</span>
+                <span class="text-gray-500"> - {{ $trott->updated_at->longAbsoluteDiffForHumans() }}</span>
             </h2>
             <p class="prose">
                 {{ $trott->body }} 
