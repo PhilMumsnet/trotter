@@ -2,22 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
-class FollowSuggestion extends Component
+class UserHeader extends Component
 {
-    public $suggestion;
+    public $user;
+
+    protected $listeners = ['followsUpdated' => '$refresh'];
 
     public function follow()
     {
-        User::find(Auth::id())->follow($this->suggestion);
+        Auth::user()->toggleFollowStatus($this->user);
         $this->emit('followsUpdated');
     }
 
     public function render()
     {
-        return view('livewire.follow-suggestion');
+        return view('livewire.user-header');
     }
 }

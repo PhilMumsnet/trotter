@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Followable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username',
     ];
 
     protected $hidden = [
@@ -35,7 +36,12 @@ class User extends Authenticatable
     public function timeline()
     {
         return Trott::query()
-            ->where('user_id', $this->id)
+            ->whereIn(
+                'user_id',
+                $this->follows
+                    ->pluck('id')
+                    ->push($this->id)
+            )
             ->with('user')
             ->withLikes()
             ->latest()
@@ -46,10 +52,5 @@ class User extends Authenticatable
     public function follows()
     {
         return $this->belongsToMany(self::class, 'follows', 'user_id', 'following_user_id');
-    }
-
-    public function follow(self $user)
-    {
-        return $this->follows()->save($user);
     }
 }

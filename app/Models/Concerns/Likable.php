@@ -14,7 +14,7 @@ trait Likable
         return $this->hasMany(Like::class);
     }
 
-    public function like($user = null, bool $liked = true)
+    public function like(User $user = null, bool $liked = true)
     {
         return $this->likes()->updateOrCreate([
             'user_id' => $user ? $user->id : Auth::id(),
@@ -23,12 +23,12 @@ trait Likable
         ]);
     }
 
-    public function dislike($user = null)
+    public function dislike(User $user = null)
     {
         return $this->like($user, false);
     }
 
-    public function clearLikeStatus($user = null)
+    public function clearLikeStatus(User $user = null)
     {
         Like::query()
             ->where('trott_id', $this->id)

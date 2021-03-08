@@ -25,6 +25,20 @@
                     </div>
 
                     <div>
+                        <label for="username">Username</label>
+
+                        <div>
+                            <input id="username" type="text" class="w-full p-2 border-2 border-gray mt-1  @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div>
                         <label for="email">E-Mail</label>
 
                         <div>

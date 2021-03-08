@@ -9,7 +9,7 @@ class FollowingList extends Component
 {
     public $follows;
 
-    protected $listeners = ['userFollowed' => 'updateFollows'];
+    protected $listeners = ['followsUpdated' => 'updateFollows'];
 
     public function mount()
     {
