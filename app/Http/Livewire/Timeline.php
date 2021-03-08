@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 
 class Timeline extends Component
 {
     public $trotts;
+    public $userId;
 
     protected $listeners = ['trottCreated' => 'updateTrotts'];
 
@@ -18,7 +19,7 @@ class Timeline extends Component
 
     public function updateTrotts()
     {
-        $this->trotts = Auth::user()->timeline();
+        $this->trotts = User::find($this->userId)->timeline();
     }
 
     public function render()
