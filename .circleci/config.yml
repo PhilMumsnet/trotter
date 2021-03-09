@@ -60,7 +60,9 @@ jobs:
       - run:
           name: "Generate App key"
           command: php artisan key:generate
-
+      - run:
+          name: "Update database"
+          command: php artisan migrate:refresh
       - run:
           name: "Run Unit Tests"
           command: |
