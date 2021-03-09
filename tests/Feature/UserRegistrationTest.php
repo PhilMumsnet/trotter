@@ -37,6 +37,7 @@ class UserRegistrationTest extends TestCase
             'email' => 'here@there.com',
             'password' => '2Asecretpassword!',
             'password_confirmation' => '2Asecretpassword!',
+            'username' => 'MrWibble',
         ]);
 
         $response->assertSessionHasNoErrors();
