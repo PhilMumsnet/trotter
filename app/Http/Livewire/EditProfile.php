@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 class EditProfile extends Component
 {
     public $user;
-    public $newPassword;
+    public $password;
+    public $password_confirmation;
 
     public function rules()
     {
@@ -37,6 +38,12 @@ class EditProfile extends Component
                 'max:255',
                 Rule::unique('users', 'email')->ignore($this->user),
             ],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+            ],
         ];
     }
 
@@ -48,7 +55,7 @@ class EditProfile extends Component
     public function submit()
     {
         $this->validate();
-        $this->user->password = Hash::make($this->newPassword);
+        $this->user->password = Hash::make($this->password);
         $this->user->save();
         $this->emit('profileEditCompleted');
 

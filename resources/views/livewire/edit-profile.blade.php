@@ -55,6 +55,28 @@
             </div>
         </div>
 
+        <div>
+            <label for="password">Password</label>
+
+            <div>
+                <input id="password" type="password" wire:model.defer="password" class="w-full p-2 border-2 border-gray mt-1 " name="password" required>
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div>
+            <label for="password-confirm">Confirm Password</label>
+
+            <div>
+                <input id="password-confirm" type="password" wire:model.defer="password_confirmation" class="w-full p-2 border-2 border-gray mt-1" name="password_confirmation" required>
+            </div>
+        </div>
+
         <div class="text-right mt-2">
             <button type="button" wire:click="cancel" class="bg-red-300 rounded-full p-2">Cancel</button>
             <button type="submit" class="bg-red-300 rounded-full p-2">Save Changes</button>
