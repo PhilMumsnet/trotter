@@ -8,13 +8,29 @@ use Illuminate\Support\Facades\Auth;
 class UserHeader extends Component
 {
     public $user;
+    public $editing = false;
 
-    protected $listeners = ['followsUpdated' => '$refresh'];
+    protected $listeners = [
+        'followsUpdated' => '$refresh',
+        'profileEditCompleted' => 'refreshHeader',
+    ];
 
     public function follow()
     {
         Auth::user()->toggleFollowStatus($this->user);
         $this->emit('followsUpdated');
+    }
+
+    public function editProfile()
+    {
+        $this->emitUp('editingProfile');
+        $this->editing = true;
+    }
+
+    public function refreshHeader()
+    {
+        $this->user->refresh();
+        $this->editing = false;
     }
 
     public function render()

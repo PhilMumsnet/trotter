@@ -24,7 +24,7 @@ class TrottTimelineTest extends TestCase
             'body' => 'trott body',
         ]);
 
-        Livewire::test(Timeline::class, ['userId' => $user->id])
+        Livewire::test(Timeline::class, ['user' => $user])
             ->assertSeeLivewire('trott-summary')
             ->assertSee('trott body')
         ;

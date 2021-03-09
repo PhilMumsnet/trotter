@@ -7,9 +7,14 @@
         </li>
 
         <li>
+            <a class="font-bold text-5xl mt-4 block" href="{{ route('user', ['user' => Auth::user()->username]) }}">Profile</a>
+        </li>
+
+        <li>
             <a class="font-bold text-5xl mt-4 block" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                document.getElementById('logout-form').submit();"
+            >
                 Logout
             </a>
         </li>
