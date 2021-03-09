@@ -10,7 +10,7 @@
                 <span class="text-gray-500"> - {{ $trott->updated_at->longAbsoluteDiffForHumans() }}</span>
             </h2>
             <p class="prose">
-                {{ $trott->body }} 
+                {!! $trott->bodyWithUserTags() !!} 
             </p>
             <div class="flex">
                 <div class="flex items-center">
