@@ -64,7 +64,6 @@ jobs:
       - run:
           name: "Run Unit Tests"
           command: |
-            ./vendor/bin/phpunit tests/Unit
             ./vendor/bin/phpunit tests/Feature
 
   heroku/deploy-via-git:
