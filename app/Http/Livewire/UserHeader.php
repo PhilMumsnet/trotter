@@ -12,8 +12,7 @@ class UserHeader extends Component
 
     protected $listeners = [
         'followsUpdated' => '$refresh',
-        'profileSaved' => 'refreshHeader',
-        'profileEditCancelled' => 'refreshHeader',
+        'profileEditCompleted' => 'refreshHeader',
     ];
 
     public function follow()

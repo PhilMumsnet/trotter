@@ -25,7 +25,7 @@ class EditProfile extends Component
 
     public function cancel()
     {
-        $this->emit('profileEditCancelled');
+        $this->emit('profileEditCompleted');
     }
 
     public function submit()
@@ -33,7 +33,7 @@ class EditProfile extends Component
         $this->validate();
         $this->user->save();
 
-        $this->emit('profileSaved');
+        $this->emit('profileEditCompleted');
 
         redirect()->to(route('user', ['user' => $this->user->username]));
     }

@@ -11,8 +11,7 @@ class UserMain extends Component
 
     protected $listeners = [
         'editingProfile' => 'setEditing',
-        'profileSaved' => 'setNotEditing',
-        'profileEditCancelled' => 'setNotEditing',
+        'profileEditCompleted' => 'setNotEditing',
     ];
 
     public function setEditing()
