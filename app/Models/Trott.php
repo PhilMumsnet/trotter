@@ -20,4 +20,23 @@ class Trott extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function bodyWithUserTags()
+    {
+        return preg_replace_callback(
+            '/@[a-zA-Z]+/',
+            function ($matches) {
+                if (User::where('username', ltrim($matches[0], '@'))->exists()) {
+                    return sprintf(
+                        '<a class="underline" href="%s">%s</a>',
+                        route('user', ltrim($matches[0], '@')),
+                        $matches[0]
+                    );
+                }
+
+                return  $matches[0];
+            },
+            $this->body
+        );
+    }
 }
