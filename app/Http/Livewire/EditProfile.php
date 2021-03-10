@@ -36,6 +36,7 @@ class EditProfile extends Component
                 Rule::unique('users', 'username')->ignore($this->user),
             ],
             'banner' => [
+                'nullable',
                 'file',
                 'mimes:jpg,bmp,png',
                 'max:1024',
@@ -64,9 +65,15 @@ class EditProfile extends Component
     public function submit()
     {
         $this->validate();
+
         $this->user->password = Hash::make($this->password);
-        $this->user->profile_banner = $this->banner->store('profile-banners');
+
+        if (! $this->user->profile_banner && $this->banner) {
+            $this->user->profile_banner = $this->banner->store('profile-banners');
+        }
+
         $this->user->save();
+
         $this->emit('profileEditCompleted');
 
         redirect()->to(route('user', ['user' => $this->user->username]));
