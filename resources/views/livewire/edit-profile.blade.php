@@ -42,6 +42,20 @@
         </div>
 
         <div>
+            <label for="banner">Profile Banner</label>
+
+            <div>
+                <input id="banner" type="file" wire:model.defer="banner" class="w-full p-2 border-2 border-grey-400 mt-1" name="banner">
+
+                @error('banner')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div>
             <label for="email">Email</label>
 
             <div>

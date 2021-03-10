@@ -3,14 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
 class EditProfile extends Component
 {
+    use WithFileUploads;
+
     public $user;
     public $password;
     public $password_confirmation;
+    public $banner;
 
     public function rules()
     {
@@ -30,6 +34,11 @@ class EditProfile extends Component
                 'max:20',
                 'alpha_dash',
                 Rule::unique('users', 'username')->ignore($this->user),
+            ],
+            'banner' => [
+                'file',
+                'mimes:jpg,bmp,png',
+                'max:1024',
             ],
             'user.email' => [
                 'required',
@@ -56,6 +65,7 @@ class EditProfile extends Component
     {
         $this->validate();
         $this->user->password = Hash::make($this->password);
+        $this->user->profile_banner = $this->banner->store('profile-banners');
         $this->user->save();
         $this->emit('profileEditCompleted');
 
