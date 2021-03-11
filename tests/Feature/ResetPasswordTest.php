@@ -66,6 +66,7 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function the_user_can_reset_their_password()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create([
             'password' => bcrypt('1abcdefgh!A'),
         ]);
@@ -80,7 +81,6 @@ class ResetPasswordTest extends TestCase
         ]));
 
         $user->refresh();
-
         $this->assertTrue(Hash::check('2abcdefgh!A', $user->password));
     }
 
