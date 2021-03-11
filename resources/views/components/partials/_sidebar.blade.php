@@ -7,7 +7,11 @@
         </li>
 
         <li>
-            <a class="font-bold text-5xl mt-4 block" href="{{ route('user', ['user' => Auth::user()->username]) }}">Profile</a>
+            <a class="font-bold text-5xl mt-4 block" href="{{ route('explore') }}">Explore</a>
+        </li>
+
+        <li>
+            <a class="font-bold text-5xl mt-4 block" href="{{ route('profile', ['user' => Auth::user()->username]) }}">Profile</a>
         </li>
 
         <li>

@@ -76,7 +76,7 @@ class EditProfile extends Component
 
         $this->emit('profileEditCompleted');
 
-        redirect()->to(route('user', ['user' => $this->user->username]));
+        redirect()->to(route('profile', ['user' => $this->user->username]));
     }
 
     public function render()
