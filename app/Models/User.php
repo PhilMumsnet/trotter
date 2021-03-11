@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Followable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function follows()
+    {
+        return $this->belongsToMany(self::class, 'follows', 'user_id', 'following_user_id');
+    }
+
     public function timeline()
     {
         return Trott::query()
@@ -49,8 +55,8 @@ class User extends Authenticatable
         ;
     }
 
-    public function follows()
+    public function setPasswordAttribute($value)
     {
-        return $this->belongsToMany(self::class, 'follows', 'user_id', 'following_user_id');
+        $this->attributes['password'] = Hash::make($value);
     }
 }

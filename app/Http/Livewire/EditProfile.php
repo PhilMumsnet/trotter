@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 class EditProfile extends Component
 {
@@ -66,7 +65,7 @@ class EditProfile extends Component
     {
         $this->validate();
 
-        $this->user->password = Hash::make($this->password);
+        $this->user->password = $this->password;
 
         if (! $this->user->profile_banner && $this->banner) {
             $this->user->profile_banner = $this->banner->store('profile-banners');
