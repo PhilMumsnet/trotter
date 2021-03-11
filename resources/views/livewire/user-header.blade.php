@@ -28,13 +28,15 @@
                     </button>
                 @endif
 
-                <button class="bg-red-300 rounded-full py-2 px-4" wire:click="follow">
-                    @if (Auth::user()->isFollowerOf($user))
-                        Unfollow
-                    @else
-                        Follow
-                    @endif
-                </button>            
+                @if (Auth::id() !== $user->id)
+                    <button class="bg-red-300 rounded-full py-2 px-4" wire:click="follow">
+                        @if (Auth::user()->isFollowerOf($user))
+                            Unfollow
+                        @else
+                            Follow
+                        @endif
+                    </button>       
+                @endif     
             </div>
         </div>
 
