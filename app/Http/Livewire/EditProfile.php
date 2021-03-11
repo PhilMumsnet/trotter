@@ -3,13 +3,17 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 class EditProfile extends Component
 {
+    use WithFileUploads;
+
     public $user;
-    public $newPassword;
+    public $password;
+    public $password_confirmation;
+    public $banner;
 
     public function rules()
     {
@@ -30,12 +34,24 @@ class EditProfile extends Component
                 'alpha_dash',
                 Rule::unique('users', 'username')->ignore($this->user),
             ],
+            'banner' => [
+                'nullable',
+                'file',
+                'mimes:jpg,bmp,png',
+                'max:1024',
+            ],
             'user.email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')->ignore($this->user),
+            ],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
             ],
         ];
     }
@@ -48,8 +64,15 @@ class EditProfile extends Component
     public function submit()
     {
         $this->validate();
-        $this->user->password = Hash::make($this->newPassword);
+
+        $this->user->password = $this->password;
+
+        if (! $this->user->profile_banner && $this->banner) {
+            $this->user->profile_banner = $this->banner->store('profile-banners');
+        }
+
         $this->user->save();
+
         $this->emit('profileEditCompleted');
 
         redirect()->to(route('user', ['user' => $this->user->username]));

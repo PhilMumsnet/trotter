@@ -42,6 +42,20 @@
         </div>
 
         <div>
+            <label for="banner">Profile Banner</label>
+
+            <div>
+                <input id="banner" type="file" wire:model.defer="banner" class="w-full p-2 border-2 border-grey-400 mt-1" name="banner">
+
+                @error('banner')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div>
             <label for="email">Email</label>
 
             <div>
@@ -52,6 +66,28 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+
+            <div>
+                <input id="password" type="password" wire:model.defer="password" class="w-full p-2 border-2 border-gray mt-1 " name="password" required>
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div>
+            <label for="password-confirm">Confirm Password</label>
+
+            <div>
+                <input id="password-confirm" type="password" wire:model.defer="password_confirmation" class="w-full p-2 border-2 border-gray mt-1" name="password_confirmation" required>
             </div>
         </div>
 
