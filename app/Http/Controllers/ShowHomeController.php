@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class HomeController extends Controller
+class ShowHomeController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         return view('home', [
             'title' => 'Home',

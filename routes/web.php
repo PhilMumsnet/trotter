@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth as AuthControllers;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('/user/{user:username}', App\Http\Controllers\ShowUserPageController::class)->middleware('auth')->name('user');
+Route::get('/', App\Http\Controllers\ShowHomeController::class)->name('home')->middleware('auth');
+Route::get('profile/{user:username}', App\Http\Controllers\ShowProfileController::class)->middleware('auth')->name('profile');
+Route::get('explore', App\Http\Controllers\ShowExploreController::class)->name('explore')->middleware('auth');
 
 Route::get('login', [AuthControllers\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthControllers\LoginController::class, 'login']);

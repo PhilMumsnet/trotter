@@ -1,7 +1,9 @@
 <div class="border-black-400 border-b-2 p-2">
     <div class="flex">
         <div>
-            <img class="rounded-full mr-2" src="{{ Gravatar::src($trott->user->email, 50) }}">
+            <a href="{{ route('profile', $trott->user->username) }}">
+                <img class="rounded-full mr-2" src="{{ Gravatar::src($trott->user->email, 50) }}">
+            </a>
         </div>
         <div>
             <h2>

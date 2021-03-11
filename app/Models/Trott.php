@@ -29,7 +29,7 @@ class Trott extends Model
                 if (User::where('username', ltrim($matches[0], '@'))->exists()) {
                     return sprintf(
                         '<a class="underline" href="%s">%s</a>',
-                        route('user', ltrim($matches[0], '@')),
+                        route('profile', ltrim($matches[0], '@')),
                         $matches[0]
                     );
                 }

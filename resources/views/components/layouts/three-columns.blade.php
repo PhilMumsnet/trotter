@@ -10,8 +10,6 @@
             </main>
             <div class="bg-white w-1/5">
                 <livewire:following-list />
-                <livewire:follow-suggestion-list />
-
             </div>
         </div>
     </div>
